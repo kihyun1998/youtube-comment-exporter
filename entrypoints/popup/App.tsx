@@ -4,7 +4,12 @@ import { Button } from '@/components/ui/button';
 import { useAppStore } from '@/lib/store';
 
 function App() {
-  const { videoId, apiKey, setVideoId, setApiKey } = useAppStore();
+  const { videoId, apiKey, apiKeyLoaded, setVideoId, setApiKey, loadApiKey } =
+    useAppStore();
+
+  useEffect(() => {
+    loadApiKey();
+  }, [loadApiKey]);
 
   useEffect(() => {
     browser.tabs

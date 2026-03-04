@@ -3,16 +3,23 @@ import { create } from 'zustand';
 interface AppState {
   videoId: string;
   apiKey: string;
+  apiKeyLoaded: boolean;
   setVideoId: (videoId: string) => void;
   setApiKey: (apiKey: string) => void;
+  loadApiKey: () => Promise<void>;
 }
 
 export const useAppStore = create<AppState>((set) => ({
   videoId: '',
-  apiKey: localStorage.getItem('yt-api-key') ?? '',
+  apiKey: '',
+  apiKeyLoaded: false,
   setVideoId: (videoId) => set({ videoId }),
   setApiKey: (apiKey) => {
-    localStorage.setItem('yt-api-key', apiKey);
+    browser.storage.local.set({ 'yt-api-key': apiKey });
     set({ apiKey });
+  },
+  loadApiKey: async () => {
+    const result = await browser.storage.local.get('yt-api-key');
+    set({ apiKey: (result['yt-api-key'] as string) ?? '', apiKeyLoaded: true });
   },
 }));
