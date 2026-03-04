@@ -1,25 +1,68 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useAppStore } from '@/lib/store';
 
 function App() {
-  const [dark, setDark] = useState(() => {
-    return localStorage.getItem('theme') === 'dark';
-  });
+  const { videoId, apiKey, setVideoId, setApiKey } = useAppStore();
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', dark);
-    localStorage.setItem('theme', dark ? 'dark' : 'light');
-  }, [dark]);
+    browser.tabs
+      .query({ active: true, currentWindow: true })
+      .then(([tab]) => {
+        if (!tab?.id) return;
+        return browser.tabs.sendMessage(tab.id, { type: 'GET_VIDEO_ID' });
+      })
+      .then((response) => {
+        if (response?.videoId) {
+          setVideoId(response.videoId);
+        }
+      })
+      .catch(() => {});
+  }, [setVideoId]);
+
+  const canScan = videoId && apiKey;
 
   return (
-    <div className="min-w-[300px] min-h-[200px] p-6 bg-background text-foreground flex flex-col items-center justify-center gap-4">
-      <h1 className="text-xl font-bold">YouTube Comment Exporter</h1>
-      <p className="text-muted-foreground text-sm">
-        Current theme: {dark ? 'Dark' : 'Light'}
-      </p>
-      <Button onClick={() => setDark(!dark)} variant="outline">
-        {dark ? 'Switch to Light' : 'Switch to Dark'}
-      </Button>
+    <div className="min-w-[300px] p-4 bg-background text-foreground flex flex-col gap-3">
+      <h1 className="text-lg font-bold">YouTube Comment Exporter</h1>
+
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="api-key" className="text-sm text-muted-foreground">
+          API Key
+        </label>
+        <Input
+          id="api-key"
+          type="password"
+          placeholder="YouTube Data API v3 key"
+          value={apiKey}
+          onChange={(e) => setApiKey(e.target.value)}
+        />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label htmlFor="video-id" className="text-sm text-muted-foreground">
+          Video ID
+        </label>
+        <div className="flex gap-2">
+          <Input
+            id="video-id"
+            placeholder="e.g. dQw4w9WgXcQ"
+            value={videoId}
+            onChange={(e) => setVideoId(e.target.value)}
+          />
+          <Button
+            size="sm"
+            disabled={!canScan}
+            onClick={() => {
+              // TODO: next step - fetch comments
+              console.log('Fetch comments for:', videoId, 'with key:', apiKey);
+            }}
+          >
+            Scan
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

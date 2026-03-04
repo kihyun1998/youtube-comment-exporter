@@ -1,6 +1,12 @@
 export default defineContentScript({
-  matches: ['*://*.google.com/*'],
+  matches: ['*://*.youtube.com/*'],
   main() {
-    console.log('Hello content.');
+    browser.runtime.onMessage.addListener((message) => {
+      if (message.type === 'GET_VIDEO_ID') {
+        const url = new URL(window.location.href);
+        const videoId = url.searchParams.get('v');
+        return Promise.resolve({ videoId });
+      }
+    });
   },
 });
