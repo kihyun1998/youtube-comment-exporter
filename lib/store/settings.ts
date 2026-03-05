@@ -1,5 +1,21 @@
 import { create } from "zustand";
 
+function extractVideoId(input: string): string {
+  const trimmed = input.trim();
+  try {
+    const url = new URL(trimmed);
+    if (url.hostname.includes("youtube.com")) {
+      return url.searchParams.get("v") ?? trimmed;
+    }
+    if (url.hostname === "youtu.be") {
+      return url.pathname.slice(1);
+    }
+  } catch {
+    // not a URL, treat as raw video ID
+  }
+  return trimmed;
+}
+
 interface SettingsState {
   videoId: string;
   apiKey: string;
@@ -13,7 +29,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   videoId: "",
   apiKey: "",
   apiKeyLoaded: false,
-  setVideoId: (videoId) => set({ videoId }),
+  setVideoId: (input) => set({ videoId: extractVideoId(input) }),
   setApiKey: (apiKey) => {
     browser.storage.local.set({ "yt-api-key": apiKey });
     set({ apiKey });
