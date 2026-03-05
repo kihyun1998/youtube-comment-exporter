@@ -1,6 +1,7 @@
 # YouTube Comment Exporter
 
 ## 완료
+
 - [x] WXT + React + Tailwind v4 + shadcn/ui 초기 세팅
 - [x] 다크모드 토글
 - [x] content script에서 videoId 추출
@@ -9,6 +10,7 @@
 - [x] API 키 발급 가이드 블로그 글 작성 (blog.md)
 
 ## 다음 할 것
+
 - [ ] YouTube Data API v3로 댓글 fetch
 - [ ] 가져온 댓글 popup UI에 리스트로 표시
 - [ ] 페이지네이션 (nextPageToken)
