@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSettingsStore } from "@/lib/store/settings";
 import { SettingsForm } from "./components/SettingsForm";
+import { ExportBar } from "./components/ExportBar";
 import { CommentList } from "./components/CommentList";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
     <div className="min-w-[340px] max-h-[500px] p-4 bg-background text-foreground flex flex-col gap-3 overflow-hidden">
       <h1 className="text-lg font-bold">YouTube Comment Exporter</h1>
       <SettingsForm />
+      <ExportBar />
       <CommentList />
     </div>
   );
