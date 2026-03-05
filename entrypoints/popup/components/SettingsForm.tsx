@@ -35,7 +35,7 @@ export function SettingsForm() {
             value={videoId}
             onChange={(e) => setVideoId(e.target.value)}
           />
-          <Button size="sm" disabled={!canScan} onClick={scan}>
+          <Button disabled={!canScan} onClick={scan}>
             {loading && comments.length === 0 ? "Loading..." : "Scan"}
           </Button>
         </div>
