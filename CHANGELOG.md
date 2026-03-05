@@ -1,0 +1,13 @@
+# Changelog
+
+## v0.1.0
+
+- **Export**: Split export button with CSV/JSON format dropdown and cancel support (`f58008c`)
+- **Replies**: Collapsible reply fetching via YouTube comments.list API (`b2932a1`)
+- **URL parsing**: Extract Video ID from full YouTube URLs (`5bd69fc`)
+- **Refactor**: Separate store, API, and components by concern (`f19ca9f`)
+- **Permissions**: Add storage permission (`45ba18a`)
+- **API key storage**: Persist API key using browser.storage.local (`7939378`)
+- **State management**: Add Zustand store, videoId extraction, and API key input (`9900d2f`)
+- **UI foundation**: Set up Tailwind CSS, shadcn/ui, and theme toggle (`4ede76d`)
+- **Init**: WXT + React project setup (`efe7194`)
