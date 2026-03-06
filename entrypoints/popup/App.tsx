@@ -13,7 +13,7 @@ type View = "main" | "settings";
 
 function App() {
   const { t } = useTranslation();
-  const { loadApiKey, loadTheme, setVideoId, theme } = useSettingsStore();
+  const { loadApiKey, loadTheme, setVideoId, theme, apiKey, apiKeyLoaded } = useSettingsStore();
   const [view, setView] = useState<View>("main");
 
   useEffect(() => {
@@ -73,6 +73,14 @@ function App() {
               </Button>
             </div>
           </div>
+          {apiKeyLoaded && !apiKey && (
+            <div className="flex items-center gap-2 text-xs px-3 py-2 rounded-md bg-accent text-accent-foreground">
+              <span className="flex-1">{t("apiKeyMissing")}</span>
+              <Button variant="outline" size="xs" className="shrink-0" onClick={() => setView("settings")}>
+                {t("settings")}
+              </Button>
+            </div>
+          )}
           <SettingsForm />
           <ExportBar />
           <CommentList />

@@ -21,5 +21,6 @@
   "replies": "답글 {{count}}개",
   "hideReplies": "답글 {{count}}개 숨기기",
   "moreReplies": "답글 더 보기",
-  "likes": "좋아요 {{count}}개"
+  "likes": "좋아요 {{count}}개",
+  "apiKeyMissing": "API 키가 설정되지 않았습니다."
 }

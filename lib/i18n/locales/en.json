@@ -21,5 +21,6 @@
   "replies": "{{count}} replies",
   "hideReplies": "Hide {{count}} replies",
   "moreReplies": "More replies",
-  "likes": "{{count}} likes"
+  "likes": "{{count}} likes",
+  "apiKeyMissing": "API Key is not set."
 }
