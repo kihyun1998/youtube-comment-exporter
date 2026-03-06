@@ -9,6 +9,51 @@ export interface ExportComment {
   publishedAt: string;
 }
 
+const MAX_CONCURRENCY = 8;
+
+async function fetchAllReplies(
+  parentId: string,
+  apiKey: string,
+  signal?: AbortSignal,
+): Promise<ExportComment[]> {
+  const replies: ExportComment[] = [];
+  let pageToken: string | undefined;
+  do {
+    signal?.throwIfAborted();
+    const result = await fetchReplies(parentId, apiKey, pageToken);
+    for (const r of result.replies) {
+      replies.push({
+        id: r.id,
+        parentId: r.parentId,
+        authorName: r.authorName,
+        text: r.text,
+        likeCount: r.likeCount,
+        publishedAt: r.publishedAt,
+      });
+    }
+    pageToken = result.nextPageToken;
+  } while (pageToken);
+  return replies;
+}
+
+async function runWithConcurrency<T>(
+  tasks: (() => Promise<T>)[],
+  limit: number,
+): Promise<T[]> {
+  const results: T[] = new Array(tasks.length);
+  let idx = 0;
+
+  async function worker() {
+    while (idx < tasks.length) {
+      const i = idx++;
+      results[i] = await tasks[i]();
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(limit, tasks.length) }, () => worker()));
+  return results;
+}
+
 export async function fetchAllComments(
   videoId: string,
   apiKey: string,
@@ -21,8 +66,9 @@ export async function fetchAllComments(
   do {
     signal?.throwIfAborted();
     const result = await fetchComments(videoId, apiKey, pageToken);
+
+    // Add top-level comments and inline replies (up to 5 per thread)
     for (const c of result.comments) {
-      signal?.throwIfAborted();
       all.push({
         id: c.id,
         parentId: "",
@@ -31,28 +77,43 @@ export async function fetchAllComments(
         likeCount: c.likeCount,
         publishedAt: c.publishedAt,
       });
-
-      if (c.replyCount > 0) {
-        let replyPageToken: string | undefined;
-        do {
-          signal?.throwIfAborted();
-          const replyResult = await fetchReplies(c.id, apiKey, replyPageToken);
-          for (const r of replyResult.replies) {
-            all.push({
-              id: r.id,
-              parentId: r.parentId,
-              authorName: r.authorName,
-              text: r.text,
-              likeCount: r.likeCount,
-              publishedAt: r.publishedAt,
-            });
-          }
-          replyPageToken = replyResult.nextPageToken;
-        } while (replyPageToken);
+      if (c.replies) {
+        for (const r of c.replies) {
+          all.push({
+            id: r.id,
+            parentId: r.parentId,
+            authorName: r.authorName,
+            text: r.text,
+            likeCount: r.likeCount,
+            publishedAt: r.publishedAt,
+          });
+        }
       }
+    }
+    onProgress?.(all.length);
 
+    // Threads with >5 replies need full fetch (inline only returns up to 5)
+    const needFullReplies = result.comments.filter((c) => c.replyCount > 5);
+    if (needFullReplies.length > 0) {
+      const tasks = needFullReplies.map((c) => () => fetchAllReplies(c.id, apiKey, signal));
+      const repliesPerThread = await runWithConcurrency(tasks, MAX_CONCURRENCY);
+
+      // Replace inline replies with full replies for these threads
+      for (let i = 0; i < needFullReplies.length; i++) {
+        const threadId = needFullReplies[i].id;
+        // Remove previously added inline replies for this thread
+        const removeStart = all.findIndex((x) => x.parentId === threadId);
+        if (removeStart !== -1) {
+          let removeEnd = removeStart;
+          while (removeEnd < all.length && all[removeEnd].parentId === threadId) removeEnd++;
+          all.splice(removeStart, removeEnd - removeStart, ...repliesPerThread[i]);
+        } else {
+          all.push(...repliesPerThread[i]);
+        }
+      }
       onProgress?.(all.length);
     }
+
     pageToken = result.nextPageToken;
   } while (pageToken);
 

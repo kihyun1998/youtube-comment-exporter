@@ -11,7 +11,7 @@ export async function fetchComments(
   pageToken?: string,
 ): Promise<FetchCommentsResult> {
   const params = new URLSearchParams({
-    part: "snippet",
+    part: "snippet,replies",
     videoId,
     key: apiKey,
     maxResults: "100",
@@ -34,6 +34,16 @@ export async function fetchComments(
 
   const comments: CommentThread[] = data.items.map((item: any) => {
     const s = item.snippet.topLevelComment.snippet;
+    const inlineReplies: Comment[] =
+      item.replies?.comments?.map((r: any) => ({
+        id: r.id,
+        parentId: r.snippet.parentId,
+        authorName: r.snippet.authorDisplayName,
+        authorProfileImage: r.snippet.authorProfileImageUrl,
+        text: r.snippet.textDisplay,
+        likeCount: r.snippet.likeCount,
+        publishedAt: r.snippet.publishedAt,
+      })) ?? [];
     return {
       id: item.id,
       parentId: "",
@@ -43,6 +53,7 @@ export async function fetchComments(
       likeCount: s.likeCount,
       publishedAt: s.publishedAt,
       replyCount: item.snippet.totalReplyCount,
+      replies: inlineReplies,
     };
   });
 

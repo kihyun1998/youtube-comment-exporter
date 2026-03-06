@@ -22,7 +22,9 @@ export function ExportBar() {
   const [format, setFormat] = useState<ExportFormat>("json");
   const [exporting, setExporting] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
   const abortRef = useRef<AbortController | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const exportAs = async (fmt: ExportFormat) => {
     const { videoId, apiKey } = useSettingsStore.getState();
@@ -32,6 +34,11 @@ export function ExportBar() {
     abortRef.current = controller;
     setExporting(true);
     setProgress(0);
+    setElapsed(0);
+    const startTime = performance.now();
+    timerRef.current = setInterval(() => {
+      setElapsed(Math.floor((performance.now() - startTime) / 1000));
+    }, 1000);
     try {
       const comments = await fetchAllComments(
         videoId,
@@ -50,6 +57,10 @@ export function ExportBar() {
         alert((e as Error).message);
       }
     } finally {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
       abortRef.current = null;
       setExporting(false);
     }
@@ -66,7 +77,7 @@ export function ExportBar() {
       </p>
       {exporting ? (
         <div className="flex gap-2 items-center">
-          <span className="text-xs flex-1">{t("exporting")} ({progress})</span>
+          <span className="text-xs flex-1">{t("exporting")} ({progress}) - {elapsed}s</span>
           <Button size="sm" variant="destructive" onClick={cancel}>
             {t("cancel")}
           </Button>
