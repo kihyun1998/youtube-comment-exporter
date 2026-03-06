@@ -15,7 +15,10 @@ export function CommentList() {
       {comments.length > 0 && (
         <div className="flex flex-col gap-2 overflow-y-auto flex-1 min-h-0">
           <p className="text-xs text-muted-foreground">
-            {t("commentsLoaded", { count: comments.length, total: totalResults })}
+            {t("commentsLoaded", {
+              count: comments.length,
+              total: totalResults,
+            })}
           </p>
 
           <div className="flex flex-col gap-2">

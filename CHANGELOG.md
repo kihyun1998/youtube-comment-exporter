@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2.1
+
+- **UX**: Add video ID/URL validation with inline error message
+- **UX**: Add info tooltip explaining auto video ID extraction from YouTube links
+- **UI**: Update input label and placeholder to indicate URL support
+
 ## v0.2.0
 
 - **Performance**: Optimize export with inline replies and parallel fetching (8x concurrency) (`7563660`)

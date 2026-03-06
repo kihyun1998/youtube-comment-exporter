@@ -4,8 +4,8 @@
   "back": "Back",
   "apiKey": "API Key",
   "apiKeyPlaceholder": "YouTube Data API v3 key",
-  "videoId": "Video ID",
-  "videoIdPlaceholder": "e.g. dQw4w9WgXcQ",
+  "videoId": "YouTube Link or Video ID",
+  "videoIdPlaceholder": "Paste a URL or video ID",
   "scan": "Scan",
   "loading": "Loading...",
   "language": "Language",
@@ -22,5 +22,8 @@
   "hideReplies": "Hide {{count}} replies",
   "moreReplies": "More replies",
   "likes": "{{count}} likes",
-  "apiKeyMissing": "API Key is not set."
+  "apiKeyMissing": "API Key is not set.",
+  "videoIdHint1": "Paste a YouTube link and",
+  "videoIdHint2": "the video ID will be extracted automatically.",
+  "invalidVideoId": "Please enter a valid YouTube video URL or ID."
 }

@@ -8,12 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSettingsStore } from "@/lib/store/settings";
-import {
-  fetchAllComments,
-  toCSV,
-  toJSON,
-  download,
-} from "@/lib/api/export";
+import { fetchAllComments, toCSV, toJSON, download } from "@/lib/api/export";
 
 type ExportFormat = "json" | "csv";
 
@@ -72,12 +67,12 @@ export function ExportBar() {
 
   return (
     <div className="flex flex-col gap-1.5">
-      <p className="text-xs text-muted-foreground">
-        {t("exportDescription")}
-      </p>
+      <p className="text-xs text-muted-foreground">{t("exportDescription")}</p>
       {exporting ? (
         <div className="flex gap-2 items-center">
-          <span className="text-xs flex-1">{t("exporting")} ({progress}) - {elapsed}s</span>
+          <span className="text-xs flex-1">
+            {t("exporting")} ({progress}) - {elapsed}s
+          </span>
           <Button size="sm" variant="destructive" onClick={cancel}>
             {t("cancel")}
           </Button>

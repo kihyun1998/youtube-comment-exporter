@@ -50,7 +50,9 @@ async function runWithConcurrency<T>(
     }
   }
 
-  await Promise.all(Array.from({ length: Math.min(limit, tasks.length) }, () => worker()));
+  await Promise.all(
+    Array.from({ length: Math.min(limit, tasks.length) }, () => worker()),
+  );
   return results;
 }
 
@@ -95,7 +97,9 @@ export async function fetchAllComments(
     // Threads with >5 replies need full fetch (inline only returns up to 5)
     const needFullReplies = result.comments.filter((c) => c.replyCount > 5);
     if (needFullReplies.length > 0) {
-      const tasks = needFullReplies.map((c) => () => fetchAllReplies(c.id, apiKey, signal));
+      const tasks = needFullReplies.map(
+        (c) => () => fetchAllReplies(c.id, apiKey, signal),
+      );
       const repliesPerThread = await runWithConcurrency(tasks, MAX_CONCURRENCY);
 
       // Replace inline replies with full replies for these threads
@@ -105,8 +109,13 @@ export async function fetchAllComments(
         const removeStart = all.findIndex((x) => x.parentId === threadId);
         if (removeStart !== -1) {
           let removeEnd = removeStart;
-          while (removeEnd < all.length && all[removeEnd].parentId === threadId) removeEnd++;
-          all.splice(removeStart, removeEnd - removeStart, ...repliesPerThread[i]);
+          while (removeEnd < all.length && all[removeEnd].parentId === threadId)
+            removeEnd++;
+          all.splice(
+            removeStart,
+            removeEnd - removeStart,
+            ...repliesPerThread[i],
+          );
         } else {
           all.push(...repliesPerThread[i]);
         }

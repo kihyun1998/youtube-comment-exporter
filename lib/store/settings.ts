@@ -1,20 +1,30 @@
 import { create } from "zustand";
 import i18n from "@/lib/i18n";
 
-function extractVideoId(input: string): string {
+const VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
+
+function extractVideoId(input: string): { id: string; error: boolean } {
   const trimmed = input.trim();
+  if (!trimmed) return { id: "", error: false };
+
   try {
     const url = new URL(trimmed);
     if (url.hostname.includes("youtube.com")) {
-      return url.searchParams.get("v") ?? trimmed;
+      const v = url.searchParams.get("v");
+      if (v && VIDEO_ID_RE.test(v)) return { id: v, error: false };
+      return { id: trimmed, error: true };
     }
     if (url.hostname === "youtu.be") {
-      return url.pathname.slice(1);
+      const v = url.pathname.slice(1);
+      if (VIDEO_ID_RE.test(v)) return { id: v, error: false };
+      return { id: trimmed, error: true };
     }
   } catch {
     // not a URL, treat as raw video ID
   }
-  return trimmed;
+
+  if (VIDEO_ID_RE.test(trimmed)) return { id: trimmed, error: false };
+  return { id: trimmed, error: true };
 }
 
 export type Theme = "light" | "dark" | "system";
@@ -22,6 +32,7 @@ export type Language = "en" | "ko";
 
 interface SettingsState {
   videoId: string;
+  videoIdError: boolean;
   apiKey: string;
   apiKeyLoaded: boolean;
   theme: Theme;
@@ -37,12 +48,16 @@ interface SettingsState {
 
 export const useSettingsStore = create<SettingsState>((set) => ({
   videoId: "",
+  videoIdError: false,
   apiKey: "",
   apiKeyLoaded: false,
   theme: "system",
   themeLoaded: false,
   language: (i18n.language as Language) ?? "en",
-  setVideoId: (input) => set({ videoId: extractVideoId(input) }),
+  setVideoId: (input) => {
+    const { id, error } = extractVideoId(input);
+    set({ videoId: id, videoIdError: error });
+  },
   setApiKey: (apiKey) => {
     browser.storage.local.set({ "yt-api-key": apiKey });
     set({ apiKey });
@@ -62,6 +77,9 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   },
   loadTheme: async () => {
     const result = await browser.storage.local.get("yt-theme");
-    set({ theme: (result["yt-theme"] as Theme) ?? "system", themeLoaded: true });
+    set({
+      theme: (result["yt-theme"] as Theme) ?? "system",
+      themeLoaded: true,
+    });
   },
 }));

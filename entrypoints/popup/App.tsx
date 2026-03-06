@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SettingsIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { useSettingsStore } from "@/lib/store/settings";
 import { SettingsForm } from "./components/SettingsForm";
 import { SettingsPage } from "./components/SettingsPage";
@@ -13,7 +14,8 @@ type View = "main" | "settings";
 
 function App() {
   const { t } = useTranslation();
-  const { loadApiKey, loadTheme, setVideoId, theme, apiKey, apiKeyLoaded } = useSettingsStore();
+  const { loadApiKey, loadTheme, setVideoId, theme, apiKey, apiKeyLoaded } =
+    useSettingsStore();
   const [view, setView] = useState<View>("main");
 
   useEffect(() => {
@@ -28,7 +30,9 @@ function App() {
     } else if (theme === "light") {
       root.classList.remove("dark");
     } else {
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       root.classList.toggle("dark", prefersDark);
     }
   }, [theme]);
@@ -59,34 +63,45 @@ function App() {
   }, [setVideoId]);
 
   return (
-    <div className="min-w-[340px] max-h-[500px] p-4 bg-background text-foreground flex flex-col gap-3 overflow-hidden">
-      {view === "settings" ? (
-        <SettingsPage onBack={() => setView("main")} />
-      ) : (
-        <>
-          <div className="flex items-center justify-between">
-            <h1 className="text-lg font-bold">{t("title")}</h1>
-            <div className="flex items-center gap-1">
-              <ThemeToggle />
-              <Button variant="ghost" size="icon-sm" onClick={() => setView("settings")}>
-                <SettingsIcon className="size-4" />
-              </Button>
+    <TooltipProvider>
+      <div className="min-w-[340px] max-h-[500px] p-4 bg-background text-foreground flex flex-col gap-3 overflow-hidden">
+        {view === "settings" ? (
+          <SettingsPage onBack={() => setView("main")} />
+        ) : (
+          <>
+            <div className="flex items-center justify-between">
+              <h1 className="text-lg font-bold">{t("title")}</h1>
+              <div className="flex items-center gap-1">
+                <ThemeToggle />
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  onClick={() => setView("settings")}
+                >
+                  <SettingsIcon className="size-4" />
+                </Button>
+              </div>
             </div>
-          </div>
-          {apiKeyLoaded && !apiKey && (
-            <div className="flex items-center gap-2 text-xs px-3 py-2 rounded-md bg-accent text-accent-foreground">
-              <span className="flex-1">{t("apiKeyMissing")}</span>
-              <Button variant="outline" size="xs" className="shrink-0" onClick={() => setView("settings")}>
-                {t("settings")}
-              </Button>
-            </div>
-          )}
-          <SettingsForm />
-          <ExportBar />
-          <CommentList />
-        </>
-      )}
-    </div>
+            {apiKeyLoaded && !apiKey && (
+              <div className="flex items-center gap-2 text-xs px-3 py-2 rounded-md bg-accent text-accent-foreground">
+                <span className="flex-1">{t("apiKeyMissing")}</span>
+                <Button
+                  variant="outline"
+                  size="xs"
+                  className="shrink-0"
+                  onClick={() => setView("settings")}
+                >
+                  {t("settings")}
+                </Button>
+              </div>
+            )}
+            <SettingsForm />
+            <ExportBar />
+            <CommentList />
+          </>
+        )}
+      </div>
+    </TooltipProvider>
   );
 }
 

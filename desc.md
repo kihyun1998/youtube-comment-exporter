@@ -26,6 +26,7 @@ Key Features
 ━━━━━━━━━━━━━━━━━━━━
 How to Use
 ━━━━━━━━━━━━━━━━━━━━
+
 1. Install the extension and enter your YouTube Data API key in Settings.
 2. Go to any YouTube video and click the extension icon.
 3. The Video ID is filled in automatically. Choose CSV or JSON and hit Export.

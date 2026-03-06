@@ -23,7 +23,9 @@ export function CommentItem({ comment }: CommentItemProps) {
     setLoading(true);
     try {
       const result = await fetchReplies(comment.id, apiKey, pageToken);
-      setReplies((prev) => (pageToken ? [...prev, ...result.replies] : result.replies));
+      setReplies((prev) =>
+        pageToken ? [...prev, ...result.replies] : result.replies,
+      );
       setNextPageToken(result.nextPageToken);
     } finally {
       setLoading(false);
