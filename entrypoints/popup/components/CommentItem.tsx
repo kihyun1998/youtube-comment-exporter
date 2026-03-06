@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { fetchReplies } from "@/lib/api/youtube";
 import { useSettingsStore } from "@/lib/store/settings";
@@ -9,6 +10,7 @@ interface CommentItemProps {
 }
 
 export function CommentItem({ comment }: CommentItemProps) {
+  const { t } = useTranslation();
   const [replies, setReplies] = useState<Comment[]>([]);
   const [nextPageToken, setNextPageToken] = useState<string>();
   const [open, setOpen] = useState(false);
@@ -47,7 +49,7 @@ export function CommentItem({ comment }: CommentItemProps) {
           {comment.authorName}
         </span>
         <span className="text-xs text-muted-foreground ml-auto whitespace-nowrap">
-          {comment.likeCount > 0 && `${comment.likeCount} likes`}
+          {comment.likeCount > 0 && t("likes", { count: comment.likeCount })}
         </span>
       </div>
       <p className="text-xs whitespace-pre-wrap break-words line-clamp-4">
@@ -63,10 +65,10 @@ export function CommentItem({ comment }: CommentItemProps) {
           disabled={loading}
         >
           {loading
-            ? "Loading..."
+            ? t("loading")
             : open
-              ? `Hide ${comment.replyCount} replies`
-              : `${comment.replyCount} replies`}
+              ? t("hideReplies", { count: comment.replyCount })
+              : t("replies", { count: comment.replyCount })}
         </Button>
       )}
 
@@ -84,7 +86,7 @@ export function CommentItem({ comment }: CommentItemProps) {
                   {r.authorName}
                 </span>
                 <span className="text-xs text-muted-foreground ml-auto whitespace-nowrap">
-                  {r.likeCount > 0 && `${r.likeCount} likes`}
+                  {r.likeCount > 0 && t("likes", { count: r.likeCount })}
                 </span>
               </div>
               <p className="text-xs whitespace-pre-wrap break-words line-clamp-3">
@@ -101,7 +103,7 @@ export function CommentItem({ comment }: CommentItemProps) {
               disabled={loading}
               onClick={() => loadReplies(nextPageToken)}
             >
-              {loading ? "Loading..." : "More replies"}
+              {loading ? t("loading") : t("moreReplies")}
             </Button>
           )}
         </div>

@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,6 +18,7 @@ import {
 type ExportFormat = "json" | "csv";
 
 export function ExportBar() {
+  const { t } = useTranslation();
   const [format, setFormat] = useState<ExportFormat>("json");
   const [exporting, setExporting] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -60,13 +62,13 @@ export function ExportBar() {
   return (
     <div className="flex flex-col gap-1.5">
       <p className="text-xs text-muted-foreground">
-        Export fetches all comments + replies automatically.
+        {t("exportDescription")}
       </p>
       {exporting ? (
         <div className="flex gap-2 items-center">
-          <span className="text-xs flex-1">Exporting... ({progress})</span>
+          <span className="text-xs flex-1">{t("exporting")} ({progress})</span>
           <Button size="sm" variant="destructive" onClick={cancel}>
-            Cancel
+            {t("cancel")}
           </Button>
         </div>
       ) : (
@@ -76,7 +78,7 @@ export function ExportBar() {
             className="rounded-r-none flex-1"
             onClick={() => exportAs(format)}
           >
-            Export {format.toUpperCase()}
+            {t("export")} {format.toUpperCase()}
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

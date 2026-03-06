@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useCommentsStore } from "@/lib/store/comments";
 import { CommentItem } from "./CommentItem";
 
 export function CommentList() {
+  const { t } = useTranslation();
   const { comments, nextPageToken, totalResults, loading, error, loadMore } =
     useCommentsStore();
 
@@ -13,7 +15,7 @@ export function CommentList() {
       {comments.length > 0 && (
         <div className="flex flex-col gap-2 overflow-y-auto flex-1 min-h-0">
           <p className="text-xs text-muted-foreground">
-            {comments.length} comments loaded (total: {totalResults})
+            {t("commentsLoaded", { count: comments.length, total: totalResults })}
           </p>
 
           <div className="flex flex-col gap-2">
@@ -30,7 +32,7 @@ export function CommentList() {
               onClick={loadMore}
               className="self-center"
             >
-              {loading ? "Loading..." : "Load More"}
+              {loading ? t("loading") : t("loadMore")}
             </Button>
           )}
         </div>

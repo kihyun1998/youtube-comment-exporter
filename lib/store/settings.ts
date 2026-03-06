@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import i18n from "@/lib/i18n";
 
 function extractVideoId(input: string): string {
   const trimmed = input.trim();
@@ -17,6 +18,7 @@ function extractVideoId(input: string): string {
 }
 
 export type Theme = "light" | "dark" | "system";
+export type Language = "en" | "ko";
 
 interface SettingsState {
   videoId: string;
@@ -24,9 +26,11 @@ interface SettingsState {
   apiKeyLoaded: boolean;
   theme: Theme;
   themeLoaded: boolean;
+  language: Language;
   setVideoId: (videoId: string) => void;
   setApiKey: (apiKey: string) => void;
   setTheme: (theme: Theme) => void;
+  setLanguage: (language: Language) => void;
   loadApiKey: () => Promise<void>;
   loadTheme: () => Promise<void>;
 }
@@ -37,6 +41,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   apiKeyLoaded: false,
   theme: "system",
   themeLoaded: false,
+  language: (i18n.language as Language) ?? "en",
   setVideoId: (input) => set({ videoId: extractVideoId(input) }),
   setApiKey: (apiKey) => {
     browser.storage.local.set({ "yt-api-key": apiKey });
@@ -45,6 +50,11 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   setTheme: (theme) => {
     browser.storage.local.set({ "yt-theme": theme });
     set({ theme });
+  },
+  setLanguage: (language) => {
+    browser.storage.local.set({ "yt-lang": language });
+    i18n.changeLanguage(language);
+    set({ language });
   },
   loadApiKey: async () => {
     const result = await browser.storage.local.get("yt-api-key");
