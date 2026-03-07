@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.1
+
+- **Security**: Disable right-click context menu in production build to prevent DevTools access
+
 ## v0.3.0
 
 - **i18n**: Add 14 language translations (ja, zh, zh-TW, es, pt, de, fr, hi, id, vi, th, ru, tr, ar) (`7ef6b2e`)
