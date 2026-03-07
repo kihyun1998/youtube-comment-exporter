@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "YouTube 댓글 내보내기"
+  },
+  "appDescription": {
+    "message": "YouTube 댓글을 CSV/JSON으로 한 번에 내보내기."
+  }
+}
