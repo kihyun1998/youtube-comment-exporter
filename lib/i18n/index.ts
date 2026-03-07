@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import en from "./locales/en.json";
 import ko from "./locales/ko.json";
 import ja from "./locales/ja.json";
-import zh from "./locales/zh.json";
+import zhCN from "./locales/zh-CN.json";
 import zhTW from "./locales/zh-TW.json";
 import es from "./locales/es.json";
 import pt from "./locales/pt.json";
@@ -25,7 +25,8 @@ const savedLang = await browser.storage.local
 const langMap: Record<string, string> = {
   ko: "ko",
   ja: "ja",
-  zh: "zh",
+  zh: "zh-CN",
+  "zh-CN": "zh-CN",
   "zh-TW": "zh-TW",
   "zh-HK": "zh-TW",
   es: "es",
@@ -50,7 +51,7 @@ i18n.use(initReactI18next).init({
     en: { translation: en },
     ko: { translation: ko },
     ja: { translation: ja },
-    zh: { translation: zh },
+    "zh-CN": { translation: zhCN },
     "zh-TW": { translation: zhTW },
     es: { translation: es },
     pt: { translation: pt },

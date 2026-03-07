@@ -32,7 +32,7 @@ export type Language =
   | "en"
   | "ko"
   | "ja"
-  | "zh"
+  | "zh-CN"
   | "zh-TW"
   | "es"
   | "pt"

@@ -15,7 +15,7 @@ const languages: { value: Language; label: string }[] = [
   { value: "en", label: "English" },
   { value: "ko", label: "한국어" },
   { value: "ja", label: "日本語" },
-  { value: "zh", label: "中文(简体)" },
+  { value: "zh-CN", label: "中文(简体)" },
   { value: "zh-TW", label: "中文(繁體)" },
   { value: "es", label: "Español" },
   { value: "pt", label: "Português" },
