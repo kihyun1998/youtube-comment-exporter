@@ -1,7 +1,14 @@
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, ChevronDownIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from "@/components/ui/dropdown-menu";
 import { useSettingsStore, type Language } from "@/lib/store/settings";
 
 const languages: { value: Language; label: string }[] = [
@@ -37,19 +44,26 @@ export function SettingsPage({ onBack }: { onBack: () => void }) {
 
       <div className="flex flex-col gap-1.5">
         <label className="text-sm text-muted-foreground">{t("language")}</label>
-        <div className="flex gap-2">
-          {languages.map(({ value, label }) => (
-            <Button
-              key={value}
-              size="sm"
-              variant={language === value ? "default" : "outline"}
-              onClick={() => setLanguage(value)}
-              className="flex-1"
-            >
-              {label}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="justify-between">
+              {languages.find((l) => l.value === language)?.label}
+              <ChevronDownIcon className="size-4 opacity-50" />
             </Button>
-          ))}
-        </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-[var(--radix-dropdown-menu-trigger-width)]">
+            <DropdownMenuRadioGroup
+              value={language}
+              onValueChange={(v) => setLanguage(v as Language)}
+            >
+              {languages.map(({ value, label }) => (
+                <DropdownMenuRadioItem key={value} value={value}>
+                  {label}
+                </DropdownMenuRadioItem>
+              ))}
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );
