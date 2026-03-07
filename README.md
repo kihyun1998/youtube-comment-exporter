@@ -10,7 +10,7 @@ A Chrome extension that exports YouTube video comments to CSV/JSON format.
 - Real-time progress tracking during export
 - Cancel ongoing exports
 - Collapsible reply threads
-- Multi-language support (Korean/English)
+- Multi-language support (16 languages: ko, en, ja, zh, zh-TW, es, pt, de, fr, hi, id, vi, th, ru, tr, ar)
 - Dark/Light theme toggle
 
 ## Tech Stack

@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.0
+
+- **i18n**: Add 14 language translations (ja, zh, zh-TW, es, pt, de, fr, hi, id, vi, th, ru, tr, ar) (`7ef6b2e`)
+- **UI**: Replace language toggle buttons with dropdown menu (`54a6bdb`)
+- **i18n**: Add `_locales` for multi-language support on Chrome Web Store (`86fae7c`)
+- **UX**: Add video ID validation with tooltip hint and shadcn Tooltip (`4361344`)
+
 ## v0.2.1
 
 - **UX**: Add video ID/URL validation with inline error message
