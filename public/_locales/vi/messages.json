@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "Trình xuất bình luận YouTube"
+  },
+  "appDescription": {
+    "message": "Xuất bình luận YouTube sang CSV/JSON chỉ với một cú nhấp."
+  }
+}

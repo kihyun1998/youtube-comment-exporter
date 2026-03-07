@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "YouTube टिप्पणी निर्यातक"
+  },
+  "appDescription": {
+    "message": "YouTube टिप्पणियों को एक क्लिक में CSV/JSON में निर्यात करें।"
+  }
+}

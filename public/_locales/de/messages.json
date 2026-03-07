@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "YouTube-Kommentar-Exporteur"
+  },
+  "appDescription": {
+    "message": "YouTube-Kommentare mit einem Klick als CSV/JSON exportieren."
+  }
+}

@@ -14,6 +14,20 @@ import { useSettingsStore, type Language } from "@/lib/store/settings";
 const languages: { value: Language; label: string }[] = [
   { value: "en", label: "English" },
   { value: "ko", label: "한국어" },
+  { value: "ja", label: "日本語" },
+  { value: "zh", label: "中文(简体)" },
+  { value: "zh-TW", label: "中文(繁體)" },
+  { value: "es", label: "Español" },
+  { value: "pt", label: "Português" },
+  { value: "de", label: "Deutsch" },
+  { value: "fr", label: "Français" },
+  { value: "hi", label: "हिन्दी" },
+  { value: "id", label: "Bahasa Indonesia" },
+  { value: "vi", label: "Tiếng Việt" },
+  { value: "th", label: "ไทย" },
+  { value: "ru", label: "Русский" },
+  { value: "tr", label: "Türkçe" },
+  { value: "ar", label: "العربية" },
 ];
 
 export function SettingsPage({ onBack }: { onBack: () => void }) {

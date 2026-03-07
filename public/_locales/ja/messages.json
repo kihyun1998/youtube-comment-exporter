@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "YouTubeコメントエクスポーター"
+  },
+  "appDescription": {
+    "message": "YouTubeのコメントをCSV/JSONにワンクリックでエクスポート。"
+  }
+}

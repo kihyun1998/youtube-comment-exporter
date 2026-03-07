@@ -28,7 +28,23 @@ function extractVideoId(input: string): { id: string; error: boolean } {
 }
 
 export type Theme = "light" | "dark" | "system";
-export type Language = "en" | "ko";
+export type Language =
+  | "en"
+  | "ko"
+  | "ja"
+  | "zh"
+  | "zh-TW"
+  | "es"
+  | "pt"
+  | "de"
+  | "fr"
+  | "hi"
+  | "id"
+  | "vi"
+  | "th"
+  | "ru"
+  | "tr"
+  | "ar";
 
 interface SettingsState {
   videoId: string;

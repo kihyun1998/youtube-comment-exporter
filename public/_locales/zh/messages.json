@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "YouTube评论导出器"
+  },
+  "appDescription": {
+    "message": "一键将YouTube评论导出为CSV/JSON。"
+  }
+}

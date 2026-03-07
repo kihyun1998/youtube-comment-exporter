@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "Экспортёр комментариев YouTube"
+  },
+  "appDescription": {
+    "message": "Экспорт комментариев YouTube в CSV/JSON одним кликом."
+  }
+}

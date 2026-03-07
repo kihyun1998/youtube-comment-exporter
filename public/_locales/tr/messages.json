@@ -1,0 +1,8 @@
+{
+  "appName": {
+    "message": "YouTube Yorum Dışa Aktarıcı"
+  },
+  "appDescription": {
+    "message": "YouTube yorumlarını tek tıkla CSV/JSON olarak dışa aktarın."
+  }
+}
