@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { SettingsIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useSettingsStore } from "@/lib/store/settings";
+import { Heart, SettingsIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { CommentList } from "./components/CommentList";
+import { ExportBar } from "./components/ExportBar";
 import { SettingsForm } from "./components/SettingsForm";
 import { SettingsPage } from "./components/SettingsPage";
-import { ExportBar } from "./components/ExportBar";
-import { CommentList } from "./components/CommentList";
 import { ThemeToggle } from "./components/ThemeToggle";
 
 type View = "main" | "settings";
@@ -98,6 +98,15 @@ function App() {
             <SettingsForm />
             <ExportBar />
             <CommentList />
+            <a
+              href="https://ko-fi.com/just_kihyun"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors py-1"
+            >
+              <Heart className="size-3" />
+              <span>Support on Ko-fi</span>
+            </a>
           </>
         )}
       </div>
