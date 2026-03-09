@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.4.0
+
+- **UX**: Add export progress bar with percentage tracking (`cfcd07f`)
+- **Export**: Add split export by comment threads with settings (`2ee4ba9`)
+- **Export**: Add customizable filename template (`f340cc6`)
+- **UI**: Add Ko-fi support link to popup footer (`b0d043a`)
+
 ## v0.3.1
 
 - **Security**: Disable right-click context menu in production build to prevent DevTools access
