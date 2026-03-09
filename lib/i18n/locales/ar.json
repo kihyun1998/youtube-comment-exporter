@@ -31,5 +31,7 @@
   "threads": "تعليقات",
   "custom": "مخصص",
   "customPlaceholder": "أدخل عدد التعليقات",
-  "apply": "تطبيق"
+  "apply": "تطبيق",
+  "filenameTemplate": "اسم الملف",
+  "filenameDescription": "يمكن استخدام {videoId} و{date} و{count} كمتغيرات."
 }

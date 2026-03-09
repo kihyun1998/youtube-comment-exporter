@@ -12,6 +12,7 @@ import { useSettingsStore } from "@/lib/store/settings";
 import {
   fetchAllComments,
   splitByThreads,
+  buildFilename,
   toCSV,
   toJSON,
   download,
@@ -52,9 +53,9 @@ export function ExportBar() {
         setProgress,
         controller.signal,
       );
-      const { splitSize } = useSettingsStore.getState();
+      const { splitSize, filenameTemplate } = useSettingsStore.getState();
       const chunks = splitByThreads(comments, splitSize);
-      const base = `comments-${videoId}`;
+      const base = buildFilename(filenameTemplate, videoId, comments.length);
 
       for (let i = 0; i < chunks.length; i++) {
         const suffix =

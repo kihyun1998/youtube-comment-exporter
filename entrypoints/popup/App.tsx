@@ -18,6 +18,7 @@ function App() {
     loadApiKey,
     loadTheme,
     loadSplitSize,
+    loadFilenameTemplate,
     setVideoId,
     theme,
     apiKey,
@@ -29,7 +30,8 @@ function App() {
     loadApiKey();
     loadTheme();
     loadSplitSize();
-  }, [loadApiKey, loadTheme, loadSplitSize]);
+    loadFilenameTemplate();
+  }, [loadApiKey, loadTheme, loadSplitSize, loadFilenameTemplate]);
 
   useEffect(() => {
     const root = document.documentElement;

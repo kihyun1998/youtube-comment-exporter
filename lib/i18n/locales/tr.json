@@ -31,5 +31,7 @@
   "threads": "yorum",
   "custom": "Özel",
   "customPlaceholder": "Yorum sayısını girin",
-  "apply": "Uygula"
+  "apply": "Uygula",
+  "filenameTemplate": "Dosya adı",
+  "filenameDescription": "{videoId}, {date}, {count} değişken olarak kullanılabilir."
 }

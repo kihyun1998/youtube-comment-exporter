@@ -31,5 +31,7 @@
   "threads": "ความคิดเห็น",
   "custom": "กำหนดเอง",
   "customPlaceholder": "ใส่จำนวนความคิดเห็น",
-  "apply": "นำไปใช้"
+  "apply": "นำไปใช้",
+  "filenameTemplate": "ชื่อไฟล์",
+  "filenameDescription": "สามารถใช้ {videoId}, {date}, {count} เป็นตัวแปรได้"
 }

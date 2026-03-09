@@ -31,5 +31,7 @@
   "threads": "комментариев",
   "custom": "Свой",
   "customPlaceholder": "Введите количество комментариев",
-  "apply": "Применить"
+  "apply": "Применить",
+  "filenameTemplate": "Имя файла",
+  "filenameDescription": "{videoId}, {date}, {count} можно использовать как переменные."
 }

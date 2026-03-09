@@ -31,5 +31,7 @@
   "threads": "Kommentare",
   "custom": "Benutzerdefiniert",
   "customPlaceholder": "Anzahl der Kommentare eingeben",
-  "apply": "Anwenden"
+  "apply": "Anwenden",
+  "filenameTemplate": "Dateiname",
+  "filenameDescription": "{videoId}, {date}, {count} können als Variablen verwendet werden."
 }

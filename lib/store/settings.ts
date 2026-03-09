@@ -55,14 +55,17 @@ interface SettingsState {
   themeLoaded: boolean;
   language: Language;
   splitSize: number;
+  filenameTemplate: string;
   setVideoId: (videoId: string) => void;
   setApiKey: (apiKey: string) => void;
   setTheme: (theme: Theme) => void;
   setLanguage: (language: Language) => void;
   setSplitSize: (size: number) => void;
+  setFilenameTemplate: (template: string) => void;
   loadApiKey: () => Promise<void>;
   loadTheme: () => Promise<void>;
   loadSplitSize: () => Promise<void>;
+  loadFilenameTemplate: () => Promise<void>;
 }
 
 export const useSettingsStore = create<SettingsState>((set) => ({
@@ -74,6 +77,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   themeLoaded: false,
   language: (i18n.language as Language) ?? "en",
   splitSize: 0,
+  filenameTemplate: "comments-{videoId}",
   setVideoId: (input) => {
     const { id, error } = extractVideoId(input);
     set({ videoId: id, videoIdError: error });
@@ -95,6 +99,10 @@ export const useSettingsStore = create<SettingsState>((set) => ({
     browser.storage.local.set({ "yt-split-size": size });
     set({ splitSize: size });
   },
+  setFilenameTemplate: (template) => {
+    browser.storage.local.set({ "yt-filename-template": template });
+    set({ filenameTemplate: template });
+  },
   loadApiKey: async () => {
     const result = await browser.storage.local.get("yt-api-key");
     set({ apiKey: (result["yt-api-key"] as string) ?? "", apiKeyLoaded: true });
@@ -109,5 +117,12 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   loadSplitSize: async () => {
     const result = await browser.storage.local.get("yt-split-size");
     set({ splitSize: (result["yt-split-size"] as number) ?? 0 });
+  },
+  loadFilenameTemplate: async () => {
+    const result = await browser.storage.local.get("yt-filename-template");
+    set({
+      filenameTemplate:
+        (result["yt-filename-template"] as string) || "comments-{videoId}",
+    });
   },
 }));

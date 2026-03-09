@@ -31,5 +31,7 @@
   "threads": "留言",
   "custom": "自訂",
   "customPlaceholder": "輸入留言數",
-  "apply": "套用"
+  "apply": "套用",
+  "filenameTemplate": "檔案名稱",
+  "filenameDescription": "可使用 {videoId}、{date}、{count} 作為變數。"
 }

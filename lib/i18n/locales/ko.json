@@ -31,5 +31,7 @@
   "threads": "댓글",
   "custom": "사용자 설정",
   "customPlaceholder": "댓글 수를 입력하세요",
-  "apply": "적용"
+  "apply": "적용",
+  "filenameTemplate": "파일명",
+  "filenameDescription": "{videoId}, {date}, {count}를 변수로 사용할 수 있습니다."
 }

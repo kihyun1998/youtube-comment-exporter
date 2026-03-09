@@ -31,5 +31,7 @@
   "threads": "评论",
   "custom": "自定义",
   "customPlaceholder": "输入评论数",
-  "apply": "应用"
+  "apply": "应用",
+  "filenameTemplate": "文件名",
+  "filenameDescription": "可使用 {videoId}、{date}、{count} 作为变量。"
 }

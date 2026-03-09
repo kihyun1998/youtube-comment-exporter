@@ -31,5 +31,7 @@
   "threads": "comentarios",
   "custom": "Personalizado",
   "customPlaceholder": "Ingrese el número de comentarios",
-  "apply": "Aplicar"
+  "apply": "Aplicar",
+  "filenameTemplate": "Nombre de archivo",
+  "filenameDescription": "Se pueden usar {videoId}, {date}, {count} como variables."
 }

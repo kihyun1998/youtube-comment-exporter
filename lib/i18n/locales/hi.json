@@ -31,5 +31,7 @@
   "threads": "टिप्पणियाँ",
   "custom": "कस्टम",
   "customPlaceholder": "टिप्पणियों की संख्या दर्ज करें",
-  "apply": "लागू करें"
+  "apply": "लागू करें",
+  "filenameTemplate": "फ़ाइल का नाम",
+  "filenameDescription": "{videoId}, {date}, {count} को वेरिएबल के रूप में उपयोग किया जा सकता है।"
 }

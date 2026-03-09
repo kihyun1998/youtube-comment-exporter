@@ -31,5 +31,7 @@
   "threads": "bình luận",
   "custom": "Tùy chỉnh",
   "customPlaceholder": "Nhập số bình luận",
-  "apply": "Áp dụng"
+  "apply": "Áp dụng",
+  "filenameTemplate": "Tên tệp",
+  "filenameDescription": "Có thể sử dụng {videoId}, {date}, {count} làm biến."
 }

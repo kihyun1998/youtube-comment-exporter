@@ -31,5 +31,7 @@
   "threads": "コメント",
   "custom": "カスタム",
   "customPlaceholder": "コメント数を入力",
-  "apply": "適用"
+  "apply": "適用",
+  "filenameTemplate": "ファイル名",
+  "filenameDescription": "{videoId}、{date}、{count}を変数として使用できます。"
 }

@@ -162,6 +162,19 @@ export function splitByThreads(
   return chunks;
 }
 
+export function buildFilename(
+  template: string,
+  videoId: string,
+  count: number,
+): string {
+  const now = new Date();
+  const date = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, "0")}${String(now.getDate()).padStart(2, "0")}`;
+  return template
+    .replace(/\{videoId\}/g, videoId)
+    .replace(/\{date\}/g, date)
+    .replace(/\{count\}/g, String(count));
+}
+
 export function toCSV(comments: ExportComment[]): string {
   const escape = (s: string) =>
     `"${s.replace(/"/g, '""').replace(/\r?\n/g, " ")}"`;

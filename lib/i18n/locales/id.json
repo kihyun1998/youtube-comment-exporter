@@ -31,5 +31,7 @@
   "threads": "komentar",
   "custom": "Kustom",
   "customPlaceholder": "Masukkan jumlah komentar",
-  "apply": "Terapkan"
+  "apply": "Terapkan",
+  "filenameTemplate": "Nama file",
+  "filenameDescription": "{videoId}, {date}, {count} dapat digunakan sebagai variabel."
 }

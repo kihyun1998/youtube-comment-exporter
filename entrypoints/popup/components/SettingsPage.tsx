@@ -36,8 +36,16 @@ const languages: { value: Language; label: string }[] = [
 
 export function SettingsPage({ onBack }: { onBack: () => void }) {
   const { t } = useTranslation();
-  const { apiKey, setApiKey, language, setLanguage, splitSize, setSplitSize } =
-    useSettingsStore();
+  const {
+    apiKey,
+    setApiKey,
+    language,
+    setLanguage,
+    splitSize,
+    setSplitSize,
+    filenameTemplate,
+    setFilenameTemplate,
+  } = useSettingsStore();
   const isCustom = splitSize > 0 && !SPLIT_PRESETS.includes(splitSize);
   const [showCustomInput, setShowCustomInput] = useState(isCustom);
   const [customValue, setCustomValue] = useState(isCustom ? String(splitSize) : "");
@@ -83,6 +91,20 @@ export function SettingsPage({ onBack }: { onBack: () => void }) {
           value={apiKey}
           onChange={(e) => setApiKey(e.target.value)}
         />
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <label className="text-sm text-muted-foreground">
+          {t("filenameTemplate")}
+        </label>
+        <Input
+          placeholder="comments-{videoId}"
+          value={filenameTemplate}
+          onChange={(e) => setFilenameTemplate(e.target.value)}
+        />
+        <p className="text-xs text-muted-foreground">
+          {t("filenameDescription")}
+        </p>
       </div>
 
       <div className="flex flex-col gap-1.5">
