@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,7 +9,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useSettingsStore } from "@/lib/store/settings";
-import { fetchAllComments, toCSV, toJSON, download } from "@/lib/api/export";
+import {
+  fetchAllComments,
+  toCSV,
+  toJSON,
+  download,
+  type ExportProgress,
+} from "@/lib/api/export";
 
 type ExportFormat = "json" | "csv";
 
@@ -16,7 +23,10 @@ export function ExportBar() {
   const { t } = useTranslation();
   const [format, setFormat] = useState<ExportFormat>("json");
   const [exporting, setExporting] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState<ExportProgress>({
+    fetched: 0,
+    total: 0,
+  });
   const [elapsed, setElapsed] = useState(0);
   const abortRef = useRef<AbortController | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -28,7 +38,7 @@ export function ExportBar() {
     const controller = new AbortController();
     abortRef.current = controller;
     setExporting(true);
-    setProgress(0);
+    setProgress({ fetched: 0, total: 0 });
     setElapsed(0);
     const startTime = performance.now();
     timerRef.current = setInterval(() => {
@@ -69,13 +79,30 @@ export function ExportBar() {
     <div className="flex flex-col gap-1.5">
       <p className="text-xs text-muted-foreground">{t("exportDescription")}</p>
       {exporting ? (
-        <div className="flex gap-2 items-center">
-          <span className="text-xs flex-1">
-            {t("exporting")} ({progress}) - {elapsed}s
-          </span>
-          <Button size="sm" variant="destructive" onClick={cancel}>
-            {t("cancel")}
-          </Button>
+        <div className="flex flex-col gap-1.5">
+          <div className="flex gap-2 items-center">
+            <span className="text-xs flex-1">
+              {t("exporting")} {progress.fetched.toLocaleString()}
+              {progress.total > 0 && ` / ${progress.total.toLocaleString()}`}
+              {progress.total > 0 &&
+                ` (${Math.min(Math.round((progress.fetched / progress.total) * 100), 100)}%)`}
+              {" "}- {elapsed}s
+            </span>
+            <Button size="sm" variant="destructive" onClick={cancel}>
+              {t("cancel")}
+            </Button>
+          </div>
+          <Progress
+            value={
+              progress.total > 0
+                ? Math.min(
+                    (progress.fetched / progress.total) * 100,
+                    100,
+                  )
+                : 0
+            }
+            className="h-1.5"
+          />
         </div>
       ) : (
         <div className="flex">

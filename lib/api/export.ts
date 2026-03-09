@@ -1,4 +1,4 @@
-import { fetchComments, fetchReplies } from "./youtube";
+import { fetchCommentCount, fetchComments, fetchReplies } from "./youtube";
 
 export interface ExportComment {
   id: string;
@@ -56,14 +56,22 @@ async function runWithConcurrency<T>(
   return results;
 }
 
+export interface ExportProgress {
+  fetched: number;
+  total: number;
+}
+
 export async function fetchAllComments(
   videoId: string,
   apiKey: string,
-  onProgress?: (count: number) => void,
+  onProgress?: (progress: ExportProgress) => void,
   signal?: AbortSignal,
 ): Promise<ExportComment[]> {
   const all: ExportComment[] = [];
   let pageToken: string | undefined;
+
+  signal?.throwIfAborted();
+  const total = await fetchCommentCount(videoId, apiKey);
 
   do {
     signal?.throwIfAborted();
@@ -92,7 +100,7 @@ export async function fetchAllComments(
         }
       }
     }
-    onProgress?.(all.length);
+    onProgress?.({ fetched: all.length, total });
 
     // Threads with >5 replies need full fetch (inline only returns up to 5)
     const needFullReplies = result.comments.filter((c) => c.replyCount > 5);
@@ -120,7 +128,7 @@ export async function fetchAllComments(
           all.push(...repliesPerThread[i]);
         }
       }
-      onProgress?.(all.length);
+      onProgress?.({ fetched: all.length, total });
     }
 
     pageToken = result.nextPageToken;

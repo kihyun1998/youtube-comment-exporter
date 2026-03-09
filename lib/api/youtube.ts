@@ -64,6 +64,28 @@ export async function fetchComments(
   };
 }
 
+export async function fetchCommentCount(
+  videoId: string,
+  apiKey: string,
+): Promise<number> {
+  const params = new URLSearchParams({
+    part: "statistics",
+    id: videoId,
+    key: apiKey,
+  });
+
+  const res = await fetch(
+    `https://www.googleapis.com/youtube/v3/videos?${params}`,
+  );
+
+  if (!res.ok) {
+    return 0;
+  }
+
+  const data = await res.json();
+  return Number(data.items?.[0]?.statistics?.commentCount ?? 0);
+}
+
 export async function fetchReplies(
   parentId: string,
   apiKey: string,
