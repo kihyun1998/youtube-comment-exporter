@@ -18,7 +18,9 @@ Fonctionnalités principales
 ✔ Récupération parallèle rapide — 8x requêtes simultanées pour une collecte en masse rapide
 ✔ Détection automatique de l'ID vidéo — Cliquez sur l'icône dans n'importe quel onglet YouTube et l'ID se remplit automatiquement
 ✔ Collage d'URL — Collez une URL YouTube complète et l'ID est extrait automatiquement
-✔ Progression en temps réel — Suivez la progression en direct et annulez à tout moment
+✔ Barre de progression — Barre de progression visuelle avec pourcentage, annulez à tout moment
+✔ Export divisé — Divisez les fichiers d'export par fils de commentaires pour une analyse plus facile
+✔ Nom de fichier personnalisé — Personnalisez le nom du fichier d'export avec des modèles flexibles
 ✔ Thème sombre / clair — Basculement en un clic pour un affichage confortable
 ✔ 16 langues — Disponible en français, anglais, japonais, chinois, coréen et plus
 

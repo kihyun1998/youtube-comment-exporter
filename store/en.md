@@ -18,7 +18,9 @@ Key Features
 ✔ Fast Parallel Fetching — 8x concurrent requests for speedy bulk collection
 ✔ Auto-detect Video ID — Click the icon on any YouTube tab and the ID fills in automatically
 ✔ URL Paste Support — Paste a full YouTube URL and the ID is extracted for you
-✔ Real-time Progress — Watch the progress live and cancel anytime
+✔ Progress Bar — Visual progress bar with percentage tracking, cancel anytime
+✔ Split Export — Split export files by comment threads for easier analysis
+✔ Custom Filename — Customize export filename with flexible templates
 ✔ Dark / Light Theme — One-click toggle for comfortable viewing
 ✔ 16 Languages — Available in English, Korean, Japanese, Chinese, Spanish, and more
 

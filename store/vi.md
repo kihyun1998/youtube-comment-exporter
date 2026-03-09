@@ -18,7 +18,9 @@ Tính năng chính
 ✔ Tải song song nhanh — 8x yêu cầu đồng thời để thu thập hàng loạt nhanh chóng
 ✔ Tự động phát hiện ID Video — Nhấp vào biểu tượng trên bất kỳ tab YouTube nào và ID được điền tự động
 ✔ Hỗ trợ dán URL — Dán URL YouTube đầy đủ và ID được trích xuất tự động
-✔ Tiến trình thời gian thực — Theo dõi tiến trình trực tiếp và hủy bất cứ lúc nào
+✔ Thanh tiến trình — Thanh tiến trình trực quan với phần trăm, hủy bất cứ lúc nào
+✔ Xuất chia tách — Chia tệp xuất theo luồng bình luận để phân tích dễ dàng hơn
+✔ Tên tệp tùy chỉnh — Tùy chỉnh tên tệp xuất với mẫu linh hoạt
 ✔ Giao diện tối / sáng — Chuyển đổi một cú nhấp để xem thoải mái
 ✔ 16 ngôn ngữ — Có sẵn bằng tiếng Việt, Anh, Nhật, Trung, Hàn và nhiều ngôn ngữ khác
 

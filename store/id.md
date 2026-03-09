@@ -18,7 +18,9 @@ Fitur Utama
 ✔ Pengambilan Paralel Cepat — 8x permintaan bersamaan untuk pengumpulan massal yang cepat
 ✔ Deteksi Otomatis ID Video — Klik ikon di tab YouTube mana pun dan ID terisi otomatis
 ✔ Dukungan Tempel URL — Tempel URL YouTube lengkap dan ID diekstrak otomatis
-✔ Progres Real-time — Pantau progres secara langsung dan batalkan kapan saja
+✔ Bilah Progres — Bilah progres visual dengan persentase, batalkan kapan saja
+✔ Ekspor Terpisah — Pisahkan file ekspor berdasarkan utas komentar untuk analisis lebih mudah
+✔ Nama File Kustom — Sesuaikan nama file ekspor dengan template fleksibel
 ✔ Tema Gelap / Terang — Beralih dengan satu klik untuk tampilan nyaman
 ✔ 16 Bahasa — Tersedia dalam Bahasa Indonesia, Inggris, Jepang, Cina, Korea, dan lainnya
 

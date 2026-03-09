@@ -18,7 +18,9 @@ Características principales
 ✔ Obtención paralela rápida — 8x solicitudes concurrentes para una recopilación masiva veloz
 ✔ Detección automática del ID de video — Haz clic en el icono en cualquier pestaña de YouTube y el ID se completa automáticamente
 ✔ Soporte para pegar URL — Pega una URL completa de YouTube y el ID se extrae automáticamente
-✔ Progreso en tiempo real — Observa el progreso en vivo y cancela en cualquier momento
+✔ Barra de progreso — Barra de progreso visual con porcentaje, cancela en cualquier momento
+✔ Exportación dividida — Divide los archivos de exportación por hilos de comentarios para un análisis más fácil
+✔ Nombre de archivo personalizado — Personaliza el nombre del archivo de exportación con plantillas flexibles
 ✔ Tema oscuro / claro — Cambio con un solo clic para una visualización cómoda
 ✔ 16 idiomas — Disponible en español, inglés, japonés, chino, coreano y más
 

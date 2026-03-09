@@ -18,7 +18,9 @@ Hauptfunktionen
 ✔ Schnelles paralleles Abrufen — 8-fache gleichzeitige Anfragen für schnelle Massensammlung
 ✔ Automatische Video-ID-Erkennung — Klicken Sie auf das Symbol in einem YouTube-Tab und die ID wird automatisch ausgefüllt
 ✔ URL-Einfügen — Fügen Sie eine vollständige YouTube-URL ein und die ID wird automatisch extrahiert
-✔ Echtzeit-Fortschritt — Verfolgen Sie den Fortschritt live und brechen Sie jederzeit ab
+✔ Fortschrittsbalken — Visueller Fortschrittsbalken mit Prozentanzeige, jederzeit abbrechen
+✔ Geteilter Export — Exportdateien nach Kommentar-Threads aufteilen für einfachere Analyse
+✔ Benutzerdefinierter Dateiname — Exportdateinamen mit flexiblen Vorlagen anpassen
 ✔ Dunkles / Helles Theme — Umschaltung mit einem Klick für angenehme Ansicht
 ✔ 16 Sprachen — Verfügbar in Deutsch, Englisch, Japanisch, Chinesisch, Koreanisch und mehr
 

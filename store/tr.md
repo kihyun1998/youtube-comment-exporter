@@ -18,7 +18,9 @@ Temel Özellikler
 ✔ Hızlı Paralel Getirme — Hızlı toplu toplama için 8x eşzamanlı istek
 ✔ Otomatik Video ID Algılama — Herhangi bir YouTube sekmesinde simgeye tıklayın, ID otomatik doldurulur
 ✔ URL Yapıştırma Desteği — Tam YouTube URL'sini yapıştırın, ID otomatik çıkarılır
-✔ Gerçek Zamanlı İlerleme — İlerlemeyi canlı izleyin ve istediğiniz zaman iptal edin
+✔ İlerleme Çubuğu — Yüzde takibi ile görsel ilerleme çubuğu, istediğiniz zaman iptal edin
+✔ Bölünmüş Dışa Aktarma — Daha kolay analiz için yorum dizilerine göre dosyaları bölün
+✔ Özel Dosya Adı — Esnek şablonlarla dışa aktarma dosya adını özelleştirin
 ✔ Koyu / Açık Tema — Rahat görüntüleme için tek tıkla geçiş
 ✔ 16 Dil — Türkçe, İngilizce, Japonca, Çince, Korece ve daha fazlasında kullanılabilir
 
