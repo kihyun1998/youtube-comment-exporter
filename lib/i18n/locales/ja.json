@@ -25,5 +25,11 @@
   "apiKeyMissing": "APIキーが設定されていません。",
   "videoIdHint1": "YouTubeリンクを貼り付けると",
   "videoIdHint2": "動画IDが自動的に抽出されます。",
-  "invalidVideoId": "有効なYouTube動画URLまたはIDを入力してください。"
+  "invalidVideoId": "有効なYouTube動画URLまたはIDを入力してください。",
+  "splitExport": "ファイル分割",
+  "splitDescription": "トップレベルのコメント数でファイルを分割します（返信含む）。0 = 分割なし。",
+  "threads": "コメント",
+  "custom": "カスタム",
+  "customPlaceholder": "コメント数を入力",
+  "apply": "適用"
 }

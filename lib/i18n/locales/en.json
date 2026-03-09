@@ -25,5 +25,11 @@
   "apiKeyMissing": "API Key is not set.",
   "videoIdHint1": "Paste a YouTube link and",
   "videoIdHint2": "the video ID will be extracted automatically.",
-  "invalidVideoId": "Please enter a valid YouTube video URL or ID."
+  "invalidVideoId": "Please enter a valid YouTube video URL or ID.",
+  "splitExport": "Split Export",
+  "splitDescription": "Split files by number of top-level comments (replies included). 0 = no split.",
+  "threads": "comments",
+  "custom": "Custom",
+  "customPlaceholder": "Enter number of comments",
+  "apply": "Apply"
 }

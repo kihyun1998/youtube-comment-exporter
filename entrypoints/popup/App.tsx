@@ -14,14 +14,22 @@ type View = "main" | "settings";
 
 function App() {
   const { t } = useTranslation();
-  const { loadApiKey, loadTheme, setVideoId, theme, apiKey, apiKeyLoaded } =
-    useSettingsStore();
+  const {
+    loadApiKey,
+    loadTheme,
+    loadSplitSize,
+    setVideoId,
+    theme,
+    apiKey,
+    apiKeyLoaded,
+  } = useSettingsStore();
   const [view, setView] = useState<View>("main");
 
   useEffect(() => {
     loadApiKey();
     loadTheme();
-  }, [loadApiKey, loadTheme]);
+    loadSplitSize();
+  }, [loadApiKey, loadTheme, loadSplitSize]);
 
   useEffect(() => {
     const root = document.documentElement;

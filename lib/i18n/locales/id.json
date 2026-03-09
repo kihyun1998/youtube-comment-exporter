@@ -25,5 +25,11 @@
   "apiKeyMissing": "Kunci API belum diatur.",
   "videoIdHint1": "Tempel tautan YouTube dan",
   "videoIdHint2": "ID video akan diekstrak secara otomatis.",
-  "invalidVideoId": "Masukkan URL atau ID video YouTube yang valid."
+  "invalidVideoId": "Masukkan URL atau ID video YouTube yang valid.",
+  "splitExport": "Bagi ekspor",
+  "splitDescription": "Bagi file berdasarkan jumlah komentar utama (termasuk balasan). 0 = tanpa pembagian.",
+  "threads": "komentar",
+  "custom": "Kustom",
+  "customPlaceholder": "Masukkan jumlah komentar",
+  "apply": "Terapkan"
 }

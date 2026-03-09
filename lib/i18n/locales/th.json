@@ -25,5 +25,11 @@
   "apiKeyMissing": "ยังไม่ได้ตั้งค่าคีย์ API",
   "videoIdHint1": "วางลิงก์ YouTube แล้ว",
   "videoIdHint2": "ID วิดีโอจะถูกดึงออกมาโดยอัตโนมัติ",
-  "invalidVideoId": "กรุณาป้อน URL หรือ ID วิดีโอ YouTube ที่ถูกต้อง"
+  "invalidVideoId": "กรุณาป้อน URL หรือ ID วิดีโอ YouTube ที่ถูกต้อง",
+  "splitExport": "แยกไฟล์",
+  "splitDescription": "แยกไฟล์ตามจำนวนความคิดเห็นระดับบนสุด (รวมการตอบกลับ) 0 = ไม่แยก",
+  "threads": "ความคิดเห็น",
+  "custom": "กำหนดเอง",
+  "customPlaceholder": "ใส่จำนวนความคิดเห็น",
+  "apply": "นำไปใช้"
 }

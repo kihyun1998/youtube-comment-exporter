@@ -25,5 +25,11 @@
   "apiKeyMissing": "API-Schlüssel ist nicht festgelegt.",
   "videoIdHint1": "Fügen Sie einen YouTube-Link ein und",
   "videoIdHint2": "die Video-ID wird automatisch extrahiert.",
-  "invalidVideoId": "Bitte geben Sie eine gültige YouTube-Video-URL oder -ID ein."
+  "invalidVideoId": "Bitte geben Sie eine gültige YouTube-Video-URL oder -ID ein.",
+  "splitExport": "Export aufteilen",
+  "splitDescription": "Dateien nach Anzahl der Top-Level-Kommentare aufteilen (Antworten inbegriffen). 0 = keine Aufteilung.",
+  "threads": "Kommentare",
+  "custom": "Benutzerdefiniert",
+  "customPlaceholder": "Anzahl der Kommentare eingeben",
+  "apply": "Anwenden"
 }

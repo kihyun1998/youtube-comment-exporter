@@ -25,5 +25,11 @@
   "apiKeyMissing": "API 키가 설정되지 않았습니다.",
   "videoIdHint1": "YouTube 링크를 붙여넣으면",
   "videoIdHint2": "동영상 ID가 자동으로 추출됩니다.",
-  "invalidVideoId": "유효한 YouTube 동영상 URL 또는 ID를 입력해주세요."
+  "invalidVideoId": "유효한 YouTube 동영상 URL 또는 ID를 입력해주세요.",
+  "splitExport": "파일 분할",
+  "splitDescription": "최상위 댓글 수 기준으로 파일을 분할합니다 (답글 포함). 0 = 분할 안 함.",
+  "threads": "댓글",
+  "custom": "사용자 설정",
+  "customPlaceholder": "댓글 수를 입력하세요",
+  "apply": "적용"
 }

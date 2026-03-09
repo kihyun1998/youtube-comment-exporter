@@ -25,5 +25,11 @@
   "apiKeyMissing": "未设置API密钥。",
   "videoIdHint1": "粘贴YouTube链接后",
   "videoIdHint2": "视频ID将自动提取。",
-  "invalidVideoId": "请输入有效的YouTube视频URL或ID。"
+  "invalidVideoId": "请输入有效的YouTube视频URL或ID。",
+  "splitExport": "文件拆分",
+  "splitDescription": "按顶级评论数拆分文件（含回复）。0 = 不拆分。",
+  "threads": "评论",
+  "custom": "自定义",
+  "customPlaceholder": "输入评论数",
+  "apply": "应用"
 }

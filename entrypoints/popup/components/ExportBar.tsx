@@ -11,6 +11,7 @@ import {
 import { useSettingsStore } from "@/lib/store/settings";
 import {
   fetchAllComments,
+  splitByThreads,
   toCSV,
   toJSON,
   download,
@@ -51,11 +52,22 @@ export function ExportBar() {
         setProgress,
         controller.signal,
       );
-      const filename = `comments-${videoId}`;
-      if (fmt === "csv") {
-        download(toCSV(comments), `${filename}.csv`, "text/csv");
-      } else {
-        download(toJSON(comments), `${filename}.json`, "application/json");
+      const { splitSize } = useSettingsStore.getState();
+      const chunks = splitByThreads(comments, splitSize);
+      const base = `comments-${videoId}`;
+
+      for (let i = 0; i < chunks.length; i++) {
+        const suffix =
+          chunks.length > 1 ? `-${i + 1}of${chunks.length}` : "";
+        const filename = `${base}${suffix}`;
+        if (fmt === "csv") {
+          download(toCSV(chunks[i]), `${filename}.csv`, "text/csv");
+        } else {
+          download(toJSON(chunks[i]), `${filename}.json`, "application/json");
+        }
+        if (i < chunks.length - 1) {
+          await new Promise((r) => setTimeout(r, 500));
+        }
       }
     } catch (e) {
       if ((e as Error).name !== "AbortError") {

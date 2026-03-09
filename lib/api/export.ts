@@ -137,6 +137,31 @@ export async function fetchAllComments(
   return all;
 }
 
+export function splitByThreads(
+  comments: ExportComment[],
+  threadsPerFile: number,
+): ExportComment[][] {
+  if (threadsPerFile <= 0) return [comments];
+
+  const chunks: ExportComment[][] = [];
+  let chunk: ExportComment[] = [];
+  let threadCount = 0;
+
+  for (const c of comments) {
+    if (c.parentId === "") {
+      if (threadCount > 0 && threadCount % threadsPerFile === 0) {
+        chunks.push(chunk);
+        chunk = [];
+      }
+      threadCount++;
+    }
+    chunk.push(c);
+  }
+  if (chunk.length > 0) chunks.push(chunk);
+
+  return chunks;
+}
+
 export function toCSV(comments: ExportComment[]): string {
   const escape = (s: string) =>
     `"${s.replace(/"/g, '""').replace(/\r?\n/g, " ")}"`;

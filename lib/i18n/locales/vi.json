@@ -25,5 +25,11 @@
   "apiKeyMissing": "Chưa đặt khóa API.",
   "videoIdHint1": "Dán liên kết YouTube và",
   "videoIdHint2": "ID video sẽ được trích xuất tự động.",
-  "invalidVideoId": "Vui lòng nhập URL hoặc ID video YouTube hợp lệ."
+  "invalidVideoId": "Vui lòng nhập URL hoặc ID video YouTube hợp lệ.",
+  "splitExport": "Chia tệp",
+  "splitDescription": "Chia tệp theo số bình luận cấp cao nhất (bao gồm trả lời). 0 = không chia.",
+  "threads": "bình luận",
+  "custom": "Tùy chỉnh",
+  "customPlaceholder": "Nhập số bình luận",
+  "apply": "Áp dụng"
 }

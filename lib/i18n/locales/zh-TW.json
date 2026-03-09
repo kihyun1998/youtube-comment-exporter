@@ -25,5 +25,11 @@
   "apiKeyMissing": "未設定API金鑰。",
   "videoIdHint1": "貼上YouTube連結後",
   "videoIdHint2": "影片ID將自動擷取。",
-  "invalidVideoId": "請輸入有效的YouTube影片URL或ID。"
+  "invalidVideoId": "請輸入有效的YouTube影片URL或ID。",
+  "splitExport": "檔案分割",
+  "splitDescription": "依頂層留言數分割檔案（含回覆）。0 = 不分割。",
+  "threads": "留言",
+  "custom": "自訂",
+  "customPlaceholder": "輸入留言數",
+  "apply": "套用"
 }

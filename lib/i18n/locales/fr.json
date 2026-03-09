@@ -25,5 +25,11 @@
   "apiKeyMissing": "La clé API n'est pas définie.",
   "videoIdHint1": "Collez un lien YouTube et",
   "videoIdHint2": "l'ID de la vidéo sera extrait automatiquement.",
-  "invalidVideoId": "Veuillez entrer une URL ou un ID de vidéo YouTube valide."
+  "invalidVideoId": "Veuillez entrer une URL ou un ID de vidéo YouTube valide.",
+  "splitExport": "Diviser l'export",
+  "splitDescription": "Diviser les fichiers par nombre de commentaires principaux (réponses incluses). 0 = pas de division.",
+  "threads": "commentaires",
+  "custom": "Personnalisé",
+  "customPlaceholder": "Entrez le nombre de commentaires",
+  "apply": "Appliquer"
 }

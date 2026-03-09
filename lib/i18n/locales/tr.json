@@ -25,5 +25,11 @@
   "apiKeyMissing": "API anahtarı ayarlanmamış.",
   "videoIdHint1": "YouTube bağlantısı yapıştırın ve",
   "videoIdHint2": "video ID otomatik olarak çıkarılacaktır.",
-  "invalidVideoId": "Lütfen geçerli bir YouTube video URL'si veya ID'si girin."
+  "invalidVideoId": "Lütfen geçerli bir YouTube video URL'si veya ID'si girin.",
+  "splitExport": "Dışa aktarmayı böl",
+  "splitDescription": "Dosyaları üst düzey yorum sayısına göre bölün (yanıtlar dahil). 0 = bölme yok.",
+  "threads": "yorum",
+  "custom": "Özel",
+  "customPlaceholder": "Yorum sayısını girin",
+  "apply": "Uygula"
 }
