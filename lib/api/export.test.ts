@@ -54,7 +54,7 @@ beforeEach(() => {
 });
 
 describe("fetchAllComments — inline-Reply completeness", () => {
-  it("fully fetches a Thread whose inline Replies are incomplete even with <=5 replies (regression for #2)", async () => {
+  it("fully fetches a Thread whose inline Replies are incomplete even with <=5 replies (regression guard for the #3 fix)", async () => {
     // Reported 3 replies, but only 1 delivered inline → must trigger a full fetch.
     singlePage([thread("t1", 3, [reply("inline-1", "t1")])]);
     mockedFetchReplies.mockResolvedValue({
@@ -100,12 +100,78 @@ describe("fetchAllComments — inline-Reply completeness", () => {
     expect(replyIds).toEqual(full.map((r) => r.id));
   });
 
-  it("rejects cleanly when the AbortSignal is already aborted", async () => {
+  it("fetches across multiple comment pages", async () => {
+    mockedFetchComments
+      .mockResolvedValueOnce({
+        comments: [thread("t1", 0, [])],
+        nextPageToken: "PAGE2",
+        totalResults: 2,
+      })
+      .mockResolvedValueOnce({
+        comments: [thread("t2", 0, [])],
+        nextPageToken: undefined,
+        totalResults: 2,
+      });
+
+    const result = await fetchAllComments("video", "key");
+
+    expect(mockedFetchComments).toHaveBeenCalledTimes(2);
+    expect(result.map((c) => c.id)).toEqual(["t1", "t2"]);
+  });
+
+  it("rejects cleanly when the AbortSignal is already aborted before the run", async () => {
     const controller = new AbortController();
     controller.abort();
 
     await expect(
       fetchAllComments("video", "key", undefined, controller.signal),
     ).rejects.toThrow();
+    // Aborted up front: not even the first comment page is requested.
+    expect(mockedFetchComments).not.toHaveBeenCalled();
+  });
+
+  it("rejects mid-Fetch when the signal is aborted between comment pages", async () => {
+    const controller = new AbortController();
+    // First page returns with a nextPageToken and aborts the signal as a side
+    // effect; the loop's in-iteration abort check must then reject before
+    // requesting page 2. (Guards the throwIfAborted at the top of the page loop.)
+    mockedFetchComments.mockImplementation(async (_videoId, _apiKey, pageToken) => {
+      if (!pageToken) {
+        controller.abort();
+        return {
+          comments: [thread("t1", 0, [])],
+          nextPageToken: "PAGE2",
+          totalResults: 1,
+        };
+      }
+      return { comments: [], nextPageToken: undefined, totalResults: 1 };
+    });
+
+    await expect(
+      fetchAllComments("video", "key", undefined, controller.signal),
+    ).rejects.toThrow();
+    // Only the first page was fetched; the abort stopped the next iteration.
+    expect(mockedFetchComments).toHaveBeenCalledTimes(1);
+  });
+
+  it("rejects mid-Fetch when the signal is aborted before an incomplete Thread's Reply fetch", async () => {
+    const controller = new AbortController();
+    // The comment page aborts the signal, then an incomplete Thread (3 reported,
+    // 1 inline) would trigger a Reply fetch — which must reject on its own abort
+    // check before any reply request. (Guards the throwIfAborted in reply paging.)
+    mockedFetchComments.mockImplementation(async () => {
+      controller.abort();
+      return {
+        comments: [thread("t1", 3, [reply("inline-1", "t1")])],
+        nextPageToken: undefined,
+        totalResults: 1,
+      };
+    });
+
+    await expect(
+      fetchAllComments("video", "key", undefined, controller.signal),
+    ).rejects.toThrow();
+    // The Reply fetch never issued a network request — it aborted first.
+    expect(mockedFetchReplies).not.toHaveBeenCalled();
   });
 });
