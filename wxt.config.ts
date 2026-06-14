@@ -5,6 +5,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   manifest: {
+    name: "YouTube Comment Exporter",
     default_locale: "en",
     permissions: ["storage"],
   },
