@@ -57,7 +57,7 @@ A `{...}` token inside a **Filename template** that is replaced when the file is
 ## Example dialogue
 
 > **Dev:** "When we **Fetch** a video, do we get every **Reply**?"
-> **Domain expert:** "The API returns up to 5 **Replies** inline per **Thread**. If a **Thread** has more, we **Fetch** the rest separately and stitch them in."
+> **Domain expert:** "The API returns up to 5 **Replies** inline per **Thread**, and isn't guaranteed to include all of them even when there are 5 or fewer. Whenever a **Thread**'s inline **Replies** are fewer than its reported count, we **Fetch** the rest separately and stitch them in."
 > **Dev:** "So a **Thread** with 200 **Replies** is still one **Thread**?"
 > **Domain expert:** "Right — one root **Comment**, 200 **Replies**, one **Thread**."
 
