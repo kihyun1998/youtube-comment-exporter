@@ -102,8 +102,13 @@ export async function fetchAllComments(
     }
     onProgress?.({ fetched: all.length, total });
 
-    // Threads with >5 replies need full fetch (inline only returns up to 5)
-    const needFullReplies = result.comments.filter((c) => c.replyCount > 5);
+    // Threads whose inline replies are incomplete need a full fetch.
+    // The API delivers up to 5 inline replies, but it does not guarantee that
+    // a thread with <=5 replies gets all of them inline — so compare the
+    // delivered inline count against the reported total, not a fixed 5.
+    const needFullReplies = result.comments.filter(
+      (c) => c.replyCount > (c.replies?.length ?? 0),
+    );
     if (needFullReplies.length > 0) {
       const tasks = needFullReplies.map(
         (c) => () => fetchAllReplies(c.id, apiKey, signal),
