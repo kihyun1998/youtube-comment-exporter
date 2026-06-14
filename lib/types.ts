@@ -10,7 +10,7 @@ export interface Comment {
 
 export interface CommentThread extends Comment {
   replyCount: number;
-  replies?: Comment[];
+  replies: Comment[];
 }
 
 export interface FetchCommentsResult {

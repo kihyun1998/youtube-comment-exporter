@@ -77,7 +77,7 @@ export async function fetchAllComments(
     signal?.throwIfAborted();
     const result = await fetchComments(videoId, apiKey, pageToken);
 
-    // Add top-level comments and inline replies (up to 5 per thread)
+    // Add each Thread's root Comment and its inline Replies (up to 5 per Thread)
     for (const c of result.comments) {
       all.push({
         id: c.id,
@@ -87,27 +87,25 @@ export async function fetchAllComments(
         likeCount: c.likeCount,
         publishedAt: c.publishedAt,
       });
-      if (c.replies) {
-        for (const r of c.replies) {
-          all.push({
-            id: r.id,
-            parentId: r.parentId,
-            authorName: r.authorName,
-            text: r.text,
-            likeCount: r.likeCount,
-            publishedAt: r.publishedAt,
-          });
-        }
+      for (const r of c.replies) {
+        all.push({
+          id: r.id,
+          parentId: r.parentId,
+          authorName: r.authorName,
+          text: r.text,
+          likeCount: r.likeCount,
+          publishedAt: r.publishedAt,
+        });
       }
     }
     onProgress?.({ fetched: all.length, total });
 
-    // Threads whose inline replies are incomplete need a full fetch.
-    // The API delivers up to 5 inline replies, but it does not guarantee that
-    // a thread with <=5 replies gets all of them inline — so compare the
+    // Threads whose inline Replies are incomplete need a full fetch.
+    // The API delivers up to 5 inline Replies, but it does not guarantee that
+    // a Thread with 5 or fewer gets all of them inline — so compare the
     // delivered inline count against the reported total, not a fixed 5.
     const needFullReplies = result.comments.filter(
-      (c) => c.replyCount > (c.replies?.length ?? 0),
+      (c) => c.replyCount > c.replies.length,
     );
     if (needFullReplies.length > 0) {
       const tasks = needFullReplies.map(
